@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel D. R. Barros | Software Engineering, AI & Inclusive Education</title>
+    <title>Daniel Barros | AI & Inclusive Education</title>
     <meta name="description" content="Computer Scientist and Doctoral Researcher working on Software Engineering, Artificial Intelligence, and Inclusive Education.">
     <meta name="author" content="Daniel D'Angelo Resende Barros">
+
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/learning.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -120,7 +122,8 @@
         .about-frame {
             background: var(--bg-card);
             border-radius: 1.5rem;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
+            /* Increased padding */
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
             display: flex;
@@ -134,12 +137,27 @@
         }
 
         .photo {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            /* Increased size */
+            height: 160px;
+            /* Increased size */
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
+            /* Pushes image down slightly */
+            margin-bottom: 1.5rem;
             border: 3px solid var(--accent);
+            object-position: 50% 25%;
+        }
+
+        /* Name Styling */
+        .sidebar h2 {
+            font-size: 1.6rem;
+            /* Increased size */
+            white-space: nowrap;
+            /* Prevents line breaks */
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
         }
 
         .main-content {
@@ -163,7 +181,6 @@
             color: var(--text-primary);
         }
 
-        /* Publications Styling Restored */
         .publication-item {
             display: flex;
             gap: 1rem;
@@ -240,6 +257,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .sidebar h2 {
+                white-space: normal;
+                /* Allow wrap on small mobile screens */
+            }
+
             .nav-container {
                 flex-direction: column;
                 gap: 1rem;
@@ -257,7 +279,6 @@
                 <a href="#publications">Publications</a>
                 <a href="#experience">Experience</a>
                 <a href="#academic-service">Academic Service</a>
-                <a href="#contact">Contact</a>
             </div>
             <button class="dark-mode-toggle" id="darkModeToggle">
                 <i class="fas fa-moon"></i> <span>Light mode</span>
@@ -283,7 +304,7 @@
                     I conduct research at the intersection of <strong>Software Engineering</strong>, <strong>Artificial Intelligence</strong>, and <strong>Inclusive Education</strong>, focusing on how intelligent and well-engineered systems can improve accessibility and learning experiences.
                 </p>
                 <p style="color: var(--text-secondary); font-size: 1rem;">
-                    With a background in building complex financial systems in São Paulo and London, I now focus on driving AI initiatives including generative solutions and large-scale learning systems. I aim to combine my engineering experience with academic research to contribute to more equitable and adaptive learning opportunities.
+                    With a background in building complex systems in São Paulo and London, I now focus on driving AI initiatives including generative solutions and large-scale learning systems. I combine my engineering experience with academic research to contribute to more equitable and adaptive learning opportunities.
                 </p>
             </div>
         </div>
@@ -294,7 +315,7 @@
                 <ul style="padding-left: 1.5rem;">
                     <li><strong>Software Engineering for AI Systems:</strong> Architecting robust intelligent platforms.</li>
                     <li><strong>Inclusive Education:</strong> Leveraging AI for accessibility and specialized learning tools.</li>
-                    <li><strong>Human-Centered AI:</strong> Ensuring technology serves diverse educational needs.</li>
+                    <li><strong>Human-Centered AI:</strong> Designing technology that serves diverse educational needs.</li>
                 </ul>
             </section>
 
@@ -354,11 +375,6 @@
                     <li>Program Committee Member for Workshops on AI in Education (AIED).</li>
                     <li>Coordinator of the Commission for Inclusion and Diversity (CIDI).</li>
                 </ul>
-            </section>
-
-            <section class="section" id="contact">
-                <h2>📫 Contact</h2>
-                <p>Feel free to reach out for collaborations via <a href="https://www.linkedin.com/in/danieldrbarros/" style="color: var(--accent);">LinkedIn</a> or email at <strong>daniel.barros [at] ufabc.edu.br</strong>.</p>
             </section>
         </main>
     </div>
