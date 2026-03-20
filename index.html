@@ -11,10 +11,8 @@
     <meta property="og:description" content="Research on Software Engineering, Artificial Intelligence, and Inclusive Education.">
     <meta property="og:type" content="website">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231e40af'/%3E%3Ctext x='50' y='70' font-size='70' text-anchor='middle' fill='white' font-family='monospace'%3ED%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%231e40af'/%3E%3Ctext x='50' y='68' font-size='48' font-family='monospace' font-weight='bold' text-anchor='middle' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
 
-    <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -50,6 +48,12 @@
             transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
 
+        /* Smooth scrolling and padding for the sticky navbar */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -57,7 +61,7 @@
             background: var(--bg-body);
         }
 
-        /* Navigation inside container */
+        /* Navigation */
         .navbar {
             background: var(--bg-card);
             box-shadow: var(--shadow);
@@ -65,8 +69,6 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-            border-radius: 1rem;
         }
 
         .nav-container {
@@ -113,20 +115,25 @@
         /* Main layout */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 2rem auto;
+            padding: 0 2rem;
             display: grid;
             grid-template-columns: 1fr 2.5fr;
             gap: 2.5rem;
         }
 
-        /* Sidebar */
+        /* Sidebar - Updated to Flexbox for perfect centering */
         .sidebar {
             background: var(--bg-card);
             border-radius: 1.5rem;
             padding: 1.5rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            align-self: start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .photo {
@@ -134,30 +141,38 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 1rem;
-            display: block;
+            margin-bottom: 1rem;
             border: 3px solid var(--accent);
         }
 
         .sidebar h1 {
             font-size: 1.5rem;
-            text-align: center;
             margin-bottom: 0.25rem;
         }
 
         .sidebar .title {
-            text-align: center;
             color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar .bio {
             font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
             margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.2rem;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .social-links a {
@@ -188,10 +203,9 @@
         }
 
         .contact-item {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             font-size: 0.9rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
+            width: 100%;
             padding-top: 1rem;
             color: var(--text-secondary);
         }
@@ -305,6 +319,7 @@
             .container {
                 grid-template-columns: 1fr;
                 padding: 1rem;
+                margin: 1rem auto;
             }
 
             .nav-container {
@@ -313,6 +328,11 @@
 
             .nav-links {
                 justify-content: center;
+                margin-bottom: 1rem;
+            }
+
+            .dark-mode-toggle {
+                margin: 0 auto;
             }
 
             .main-content {
@@ -324,28 +344,32 @@
 
 <body class="dark">
 
-    <div class="container">
-        <!-- Navbar inside container -->
-        <div class="navbar">
-            <div class="nav-container">
-                <div class="nav-links">
-                    <a href="#research">Research</a>
-                    <a href="#publications">Publications</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <button class="dark-mode-toggle" id="darkModeToggle">
-                    <i class="fas fa-moon"></i> <span>Light mode</span>
-                </button>
+    <div class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#academic-service">Academic Service</a>
+                <a href="#contact">Contact</a>
             </div>
+            <button class="dark-mode-toggle" id="darkModeToggle">
+                <i class="fas fa-moon"></i> <span>Light mode</span>
+            </button>
         </div>
+    </div>
 
+    <div class="container">
         <aside class="sidebar">
-            <!-- Replace with your actual photo -->
-            <img class="photo" src="profile.jpg" alt="Daniel Barros" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo';">
+            <img class="photo" src="profile.png" alt="Daniel Barros" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo';">
             <h1>Daniel D. R. Barros</h1>
-            <div class="title">Computer Scientist · Doctoral Researcher (UFABC)</div>
+            <div class="title">Computer Scientist · Doctoral Researcher</div>
+
+            <p class="bio">
+                PhD researcher in Computer Science at UFABC and Coordinator of the Commission for Inclusion and Diversity (CIDI) at Colégio Humboldt. My work bridges Software Engineering and Artificial Intelligence to build intelligent, inclusive educational tools.
+            </p>
+
             <div class="social-links">
                 <a href="https://github.com/danieldrbarros" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/danieldrbarros/" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -364,7 +388,7 @@
             </div>
 
             <div class="section" id="research">
-                <h2>🔬 Research Interests</h2>
+                <h2>🔬 Research</h2>
                 <ul>
                     <li>Software Engineering for AI Systems</li>
                     <li>Artificial Intelligence for Inclusive Education</li>
@@ -375,7 +399,6 @@
 
             <div class="section" id="publications">
                 <h2>📄 Publications</h2>
-                <!-- Replace these entries with your actual publications -->
                 <div class="publication-item">
                     <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
                     <div class="pub-content">
@@ -413,7 +436,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add more publications as needed -->
             </div>
 
             <div class="section" id="experience">
@@ -443,16 +465,6 @@
                 </div>
             </div>
 
-            <!-- Optional sections -->
-            <div class="section" id="research-stack">
-                <h2>🧰 Research Stack</h2>
-                <ul>
-                    <li><strong>Languages & Frameworks:</strong> Python, Java, React, PyTorch</li>
-                    <li><strong>AI/ML:</strong> Transformers, NLP, LLMs (GPT, LLaMA)</li>
-                    <li><strong>Accessibility Tools:</strong> WCAG, ARIA, screen reader testing</li>
-                </ul>
-            </div>
-
             <div class="section" id="academic-service">
                 <h2>📚 Academic Service</h2>
                 <ul>
@@ -470,7 +482,7 @@
     </div>
 
     <footer>
-        &copy; 2025 Daniel D. R. Barros — Last updated March 2025
+        &copy; 2026 Daniel D. R. Barros — Last updated March 2026
     </footer>
 
     <script>
