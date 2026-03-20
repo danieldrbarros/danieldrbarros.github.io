@@ -3,120 +3,332 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Daniel D. R. Barros | Software Engineering, AI & Inclusive Education</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO -->
+    <title>Daniel D. R. Barros | Software Engineering, AI & Inclusive Education</title>
     <meta name="description" content="Computer Scientist and Doctoral Researcher working on Software Engineering, Artificial Intelligence, and Inclusive Education.">
     <meta name="author" content="Daniel D'Angelo Resende Barros">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="Daniel Barros | Software Engineering, AI & Inclusive Education">
     <meta property="og:description" content="Research on Software Engineering, Artificial Intelligence, and Inclusive Education.">
     <meta property="og:type" content="website">
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 40px;
-            line-height: 1.8;
-            color: #222;
-            background-color: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
         }
 
-        h1 {
-            font-size: 2.6em;
-            margin-bottom: 5px;
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
-        .subtitle {
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        h2 {
-            margin-top: 50px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        a {
-            color: #0366d6;
+        .nav-links a {
             text-decoration: none;
+            color: #1e40af;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        a:hover {
+        .nav-links a:hover {
+            color: #1e3a8a;
             text-decoration: underline;
         }
 
-        .links {
-            margin: 20px 0;
+        /* Main layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 2.5rem;
         }
 
-        .links a {
-            margin-right: 15px;
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
         }
 
-        .highlight {
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
             font-weight: 600;
+            color: white;
+            font-family: monospace;
+        }
+
+        .sidebar h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar .title {
+            text-align: center;
+            color: #4b5563;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            background: #f1f5f9;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #1e40af;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            background: #e2e8f0;
+        }
+
+        .contact-item {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+
+        /* Main content */
+        .main-content {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+        }
+
+        .section ul {
+            padding-left: 1.2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-item {
+            margin-bottom: 1rem;
+        }
+
+        .pub-title {
+            font-weight: 600;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        .award {
+            color: #b45309;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+            flex: 1 1 200px;
+            border: 1px solid #e2e8f0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Daniel D'Angelo Resende Barros</h1>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <p class="subtitle">
-        Computer Scientist • Doctoral Researcher in Computer Science (UFABC)
-    </p>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="avatar">DB</div>
+            <h1>Daniel D. R. Barros</h1>
+            <div class="title">Computer Scientist · Doctoral Researcher (UFABC)</div>
+            <div class="social-links">
+                <a href="https://github.com/danieldrbarros">GitHub</a>
+                <a href="https://www.linkedin.com/in/danieldrbarros/">LinkedIn</a>
+                <a href="https://scholar.google.com/citations?user=hywBbNoAAAAJ">Scholar</a>
+            </div>
+            <div class="contact-item">
+                📍 São Paulo, Brazil / UK<br>
+                ✉️ daniel.barros [at] ufabc.edu.br
+            </div>
+        </aside>
 
-    <p>
-        I conduct research at the intersection of
-        <span class="highlight">Software Engineering</span>,
-        <span class="highlight">Artificial Intelligence</span>, and
-        <span class="highlight">Inclusive Education</span>, focusing on how intelligent and well-engineered systems can improve accessibility and learning experiences.
-    </p>
+        <main class="main-content">
+            <div class="section">
+                <p>I conduct research at the intersection of <strong>Software Engineering</strong>, <strong>Artificial Intelligence</strong>, and <strong>Inclusive Education</strong>, focusing on how intelligent and well-engineered systems can improve accessibility and learning experiences.</p>
+            </div>
 
-    <div class="links">
-        <a href="https://www.linkedin.com/in/danieldrbarros/">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=hywBbNoAAAAJ">Google Scholar</a>
-        <a href="https://github.com/danieldrbarros">GitHub</a>
+            <div class="section" id="research">
+                <h2>🔬 Research Interests</h2>
+                <ul>
+                    <li>Software Engineering for AI Systems</li>
+                    <li>Artificial Intelligence for Inclusive Education</li>
+                    <li>Accessibility in Digital Environments</li>
+                    <li>Human-centered AI</li>
+                </ul>
+            </div>
+
+            <div class="section" id="publications">
+                <h2>📄 Selected Publications</h2>
+                <div class="publication-item">
+                    <div class="pub-title">Distinguished Paper Award – SBES 2021</div>
+                    <div class="pub-venue">Brazilian Symposium on Software Engineering</div>
+                    <div class="award">🏆 Distinguished Paper</div>
+                </div>
+                <p>For a full list, visit <a href="https://scholar.google.com/citations?user=hywBbNoAAAAJ">Google Scholar</a>.</p>
+            </div>
+
+            <div class="section" id="experience">
+                <h2>💼 Experience</h2>
+                <p>Extensive experience in software engineering and technical leadership, with global work in Brazil and the UK. Led large-scale systems and AI initiatives, including intelligent documentation systems and AI-assisted development tools.</p>
+                <ul>
+                    <li>Doctoral Researcher – UFABC (2022–present)</li>
+                    <li>Software Engineering Consultant – International projects</li>
+                    <li>Technical Lead – AI & documentation platforms</li>
+                </ul>
+            </div>
+
+            <div class="section" id="projects">
+                <h2>🤖 Projects</h2>
+                <div class="project-list">
+                    <div class="project-card">
+                        <strong>AI for Accessibility</strong><br>
+                        Research on using LLMs to improve digital accessibility.
+                    </div>
+                    <div class="project-card">
+                        <strong>Humanoid Robotics</strong><br>
+                        Worked with Pepper robot for inclusive education scenarios.
+                    </div>
+                    <div class="project-card">
+                        <strong>AI-Assisted Dev Tools</strong><br>
+                        Development of intelligent documentation systems.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="contact">
+                <h2>📫 Contact</h2>
+                <p>Feel free to reach out via <a href="https://www.linkedin.com/in/danieldrbarros/">LinkedIn</a> or <a href="https://github.com/danieldrbarros">GitHub</a>.</p>
+            </div>
+        </main>
     </div>
 
-    <h2>🔬 Research</h2>
-    <ul>
-        <li>Software Engineering for AI Systems</li>
-        <li>Artificial Intelligence for Inclusive Education</li>
-        <li>Accessibility in Digital Environments</li>
-        <li>Human-centered AI</li>
-    </ul>
-
-    <h2>🏆 Publications</h2>
-    <p>
-        Distinguished Paper Award – SBES 2021<br>
-        <a href="https://scholar.google.com/citations?user=hywBbNoAAAAJ">View full list</a>
-    </p>
-
-    <h2>💼 Experience</h2>
-    <p>
-        Extensive experience in software engineering and technical leadership, with global work in Brazil and the UK.
-        Led large-scale systems and AI initiatives, including intelligent documentation systems and AI-assisted development tools.
-    </p>
-
-    <h2>🤖 Projects</h2>
-    <p>
-        Worked on AI systems and cyber-physical systems, including humanoid robots such as
-        <a href="https://www.aldebaran.com/en/pepper">Pepper</a>.
-    </p>
-
-    <h2>📫 Contact</h2>
-    <p>
-        Feel free to reach out via <a href="https://www.linkedin.com/in/danieldrbarros/">LinkedIn</a>.
-    </p>
+    <footer>
+        &copy; 2025 Daniel D. R. Barros — Last updated March 2025
+    </footer>
 
 </body>
 
