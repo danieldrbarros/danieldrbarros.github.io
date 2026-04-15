@@ -59,8 +59,8 @@ jobs:
               deviceScaleFactor: 2  // higher DPI for sharper text
             });
             
-            // Wait a tiny bit for any layout shifts after viewport change
-            await page.waitForTimeout(100);
+            // Short delay to allow any reflows after viewport change
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             await page.pdf({
               path: 'cv.pdf',
