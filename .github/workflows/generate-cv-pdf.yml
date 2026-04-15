@@ -44,37 +44,31 @@ jobs:
             const htmlPath = path.resolve('cv.html');
             await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
             
-            // Get the full scrollable dimensions
-            const dimensions = await page.evaluate(() => {
-              return {
-                width: document.documentElement.scrollWidth,
-                height: document.documentElement.scrollHeight,
-              };
-            });
+            // Use a viewport width that matches your CV's natural width (e.g., 1200px)
+            await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 1 });
             
-            // Set viewport to match content width and height
-            await page.setViewport({
-              width: Math.ceil(dimensions.width),
-              height: Math.ceil(dimensions.height),
-              deviceScaleFactor: 2  // higher DPI for sharper text
-            });
-            
-            // Short delay to allow any reflows after viewport change
+            // Wait for any reflow
             await new Promise(resolve => setTimeout(resolve, 100));
+            
+            // Get the full scroll height after viewport is set
+            const scrollHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+            
+            // Set viewport height to full scroll height to capture everything
+            await page.setViewport({ width: 1200, height: scrollHeight, deviceScaleFactor: 2 });
             
             await page.pdf({
               path: 'cv.pdf',
-              width: '8.27in',               // A4 width
-              height: (dimensions.height + 40) + 'px', // Use full height + buffer
+              format: 'A4',
               printBackground: true,
+              scale: 0.75,          // Adjust until content fits without clipping
               margin: { top: '0.4in', bottom: '0.4in', left: '0.4in', right: '0.4in' }
             });
             
             await browser.close();
-            console.log('✅ PDF generated: cv.pdf');
+            console.log('✅ PDF generated with scaling');
           })();
           EOF
-    
+              
       - name: Commit and push PDF if changed
         run: |
           git config user.name "github-actions[bot]"
