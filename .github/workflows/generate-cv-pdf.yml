@@ -4,9 +4,8 @@ on:
   push:
     paths:
       - 'cv.html'
-  workflow_dispatch:  # Allows manual trigger from Actions tab
+  workflow_dispatch:
 
-# Grant write permissions to the GITHUB_TOKEN
 permissions:
   contents: write
 
@@ -23,28 +22,30 @@ jobs:
           node-version: '20'
 
       - name: Install Puppeteer
-        run: |
-          npm install puppeteer
+        run: npm install puppeteer
 
       - name: Generate PDF from cv.html
         run: |
           node << 'EOF'
           const puppeteer = require('puppeteer');
-          const fs = require('fs');
           const path = require('path');
 
           (async () => {
-            const browser = await puppeteer.launch({ headless: 'new' });
+            const browser = await puppeteer.launch({
+              headless: 'new',
+              args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage'
+              ]
+            });
             const page = await browser.newPage();
             
-            // Use file:// protocol to load local HTML with all assets
             const htmlPath = path.resolve('cv.html');
             await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
             
-            // Set viewport to ensure proper rendering (adjust as needed)
             await page.setViewport({ width: 1200, height: 1600 });
             
-            // Generate PDF with print media emulation
             await page.pdf({
               path: 'cv.pdf',
               format: 'A4',
@@ -65,6 +66,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to PDF."
           else
-            git commit -m "Auto-generate CV PDF from cv.html"
+            git commit -m "Auto-generate cv.pdf from cv.html"
             git push
           fi
