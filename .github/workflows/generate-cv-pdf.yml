@@ -1,0 +1,70 @@
+name: Generate CV PDF
+
+on:
+  push:
+    paths:
+      - 'cv.html'
+  workflow_dispatch:  # Allows manual trigger from Actions tab
+
+# Grant write permissions to the GITHUB_TOKEN
+permissions:
+  contents: write
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Puppeteer
+        run: |
+          npm install puppeteer
+
+      - name: Generate PDF from cv.html
+        run: |
+          node << 'EOF'
+          const puppeteer = require('puppeteer');
+          const fs = require('fs');
+          const path = require('path');
+
+          (async () => {
+            const browser = await puppeteer.launch({ headless: 'new' });
+            const page = await browser.newPage();
+            
+            // Use file:// protocol to load local HTML with all assets
+            const htmlPath = path.resolve('cv.html');
+            await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
+            
+            // Set viewport to ensure proper rendering (adjust as needed)
+            await page.setViewport({ width: 1200, height: 1600 });
+            
+            // Generate PDF with print media emulation
+            await page.pdf({
+              path: 'cv.pdf',
+              format: 'A4',
+              printBackground: true,
+              margin: { top: '0.4in', bottom: '0.4in', left: '0.4in', right: '0.4in' }
+            });
+            
+            await browser.close();
+            console.log('✅ PDF generated: cv.pdf');
+          })();
+          EOF
+
+      - name: Commit and push PDF if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cv.pdf
+          if git diff --cached --quiet; then
+            echo "No changes to PDF."
+          else
+            git commit -m "Auto-generate CV PDF from cv.html"
+            git push
+          fi
