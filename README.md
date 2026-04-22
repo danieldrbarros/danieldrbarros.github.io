@@ -1,4 +1,4 @@
-# danieldrbarros/danieldrbarros.github.io
+# danieldrbarros.github.io
 
 This repository hosts my personal website and CV, automatically published via **GitHub Pages**. The site includes an `index.html` landing page and an HTML‑based CV (`cv.html`). A GitHub Action generates a print‑ready PDF version of the CV (`cv.pdf`) every time `cv.html` is updated.
 
